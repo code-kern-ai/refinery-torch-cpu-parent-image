@@ -13,9 +13,9 @@ steps:
       - 'git config --global url."https://github.com/".insteadOf git@github.com:'
       - "git submodule update --recursive --remote"
   - name: build and publish
-    dockerfile: dev.Dockerfile
     image: plugins/docker
     settings:
+      dockerfile: dev.Dockerfile
       registry: registry.dev.onetask.ai
       username:
         from_secret: docker_username
@@ -48,9 +48,9 @@ steps:
       - 'git config --global url."https://github.com/".insteadOf git@github.com:'
       - "git submodule update --recursive --remote"
   - name: build and publish
-    dockerfile: dev.arm64.Dockerfile
     image: plugins/docker
     settings:
+      dockerfile: dev.arm64.Dockerfile
       registry: registry.dev.onetask.ai
       username:
         from_secret: docker_username
