@@ -15,13 +15,15 @@ steps:
   - name: build and publish
     image: plugins/docker
     settings:
+      dockerfile: dev.Dockerfile
       registry: registry.dev.onetask.ai
       username:
         from_secret: docker_username
       password:
         from_secret: docker_password
       repo: "registry.dev.onetask.ai/code-kern-ai/refinery-parent-images"
-      tags: ["${DRONE_COMMIT_SHA}-torch-cpu", "${DRONE_COMMIT_BRANCH}-torch-cpu"]
+      tags:
+        ["${DRONE_COMMIT_SHA}-torch-cpu", "${DRONE_COMMIT_BRANCH}-torch-cpu"]
       cache_from:
         - "registry.dev.onetask.ai/code-kern-ai/refinery-parent-images:dev-torch-cpu"
         - "registry.dev.onetask.ai/code-kern-ai/refinery-parent-images:${DRONE_COMMIT_BRANCH}-torch-cpu"
@@ -48,13 +50,18 @@ steps:
   - name: build and publish
     image: plugins/docker
     settings:
+      dockerfile: dev.arm64.Dockerfile
       registry: registry.dev.onetask.ai
       username:
         from_secret: docker_username
       password:
         from_secret: docker_password
       repo: "registry.dev.onetask.ai/code-kern-ai/refinery-parent-images"
-      tags: ["${DRONE_COMMIT_SHA}-torch-cpu-arm64", "${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"]
+      tags:
+        [
+          "${DRONE_COMMIT_SHA}-torch-cpu-arm64",
+          "${DRONE_COMMIT_BRANCH}-torch-cpu-arm64",
+        ]
       cache_from:
         - "registry.dev.onetask.ai/code-kern-ai/refinery-parent-images:dev-torch-cpu-arm64"
         - "registry.dev.onetask.ai/code-kern-ai/refinery-parent-images:${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"
@@ -127,14 +134,14 @@ trigger:
 kind: pipeline
 name: manifest
 steps:
-- name: manifest
-  image: plugins/manifest
-  settings:
-    spec: manifest.tmpl
-    username:
-      from_secret: dockerhub_username
-    password:
-      from_secret: dockerhub_password
+  - name: manifest
+    image: plugins/manifest
+    settings:
+      spec: manifest.tmpl
+      username:
+        from_secret: dockerhub_username
+      password:
+        from_secret: dockerhub_password
 
 depends_on:
   - amd64-dockerhub
