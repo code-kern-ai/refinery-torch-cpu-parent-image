@@ -1,4 +1,4 @@
-FROM registry.dev.onetask.ai/code-kern-ai/refinery-parent-images:dev-common
+FROM registry.dev.kern.ai/code-kern-ai/refinery-parent-images:dev-common
 
 COPY submodules/parent-images/requirements/torch-cpu-requirements.txt .
 
