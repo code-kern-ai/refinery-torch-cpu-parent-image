@@ -16,17 +16,17 @@ steps:
     image: plugins/docker
     settings:
       dockerfile: dev.Dockerfile
-      registry: registry.dev.onetask.ai
+      registry: registry.dev.kern.ai
       username:
         from_secret: docker_username
       password:
         from_secret: docker_password
-      repo: "registry.dev.onetask.ai/code-kern-ai/refinery-parent-images"
+      repo: "registry.dev.kern.ai/code-kern-ai/refinery-parent-images"
       tags:
         ["${DRONE_COMMIT_SHA}-torch-cpu", "${DRONE_COMMIT_BRANCH}-torch-cpu"]
       cache_from:
-        - "registry.dev.onetask.ai/code-kern-ai/refinery-parent-images:dev-torch-cpu"
-        - "registry.dev.onetask.ai/code-kern-ai/refinery-parent-images:${DRONE_COMMIT_BRANCH}-torch-cpu"
+        - "registry.dev.kern.ai/code-kern-ai/refinery-parent-images:dev-torch-cpu"
+        - "registry.dev.kern.ai/code-kern-ai/refinery-parent-images:${DRONE_COMMIT_BRANCH}-torch-cpu"
 
 trigger:
   event:
@@ -51,20 +51,20 @@ steps:
     image: plugins/docker
     settings:
       dockerfile: dev.arm64.Dockerfile
-      registry: registry.dev.onetask.ai
+      registry: registry.dev.kern.ai
       username:
         from_secret: docker_username
       password:
         from_secret: docker_password
-      repo: "registry.dev.onetask.ai/code-kern-ai/refinery-parent-images"
+      repo: "registry.dev.kern.ai/code-kern-ai/refinery-parent-images"
       tags:
         [
           "${DRONE_COMMIT_SHA}-torch-cpu-arm64",
           "${DRONE_COMMIT_BRANCH}-torch-cpu-arm64",
         ]
       cache_from:
-        - "registry.dev.onetask.ai/code-kern-ai/refinery-parent-images:dev-torch-cpu-arm64"
-        - "registry.dev.onetask.ai/code-kern-ai/refinery-parent-images:${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"
+        - "registry.dev.kern.ai/code-kern-ai/refinery-parent-images:dev-torch-cpu-arm64"
+        - "registry.dev.kern.ai/code-kern-ai/refinery-parent-images:${DRONE_COMMIT_BRANCH}-torch-cpu-arm64"
 
 trigger:
   branch:
