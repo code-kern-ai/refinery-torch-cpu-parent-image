@@ -20,6 +20,6 @@ ENV PATH="${VENV_PATH}/bin:${PATH}"
 
 COPY --from=builder --chown=65532:65532 ${VENV_PATH} ${VENV_PATH}
 
-RUN python -c "import torch; model = torch.nn.Linear(2, 1); model(torch.ones(1, 2))"
+RUN ["/opt/venv/bin/python", "-c", "import torch; model = torch.nn.Linear(2, 1); model(torch.ones(1, 2))"]
 
 USER 65532:65532
