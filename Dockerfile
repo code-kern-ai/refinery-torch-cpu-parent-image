@@ -1,4 +1,4 @@
-FROM dhi.io/python:3.11.11-debian12-dev AS builder
+FROM dhi.io/python:3.11-debian12-dev AS builder
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -11,7 +11,7 @@ COPY submodules/parent-images/requirements/torch-cpu-requirements.txt .
 
 RUN pip install --no-cache-dir -r torch-cpu-requirements.txt
 
-FROM dhi.io/python:3.11.11-debian12
+FROM dhi.io/python:3.11-debian12
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
